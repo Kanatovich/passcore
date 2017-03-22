@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.PassCore.Web.Controllers
 {
     using Microsoft.AspNet.Mvc;
+    using System.IO;
 
     /// <summary>
     /// This controller is simply a placeholder to redirect any non-matching URL
@@ -12,7 +13,8 @@
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return File("~/index.html", "text/html");
+            var fileContent = System.IO.File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "index.html"));
+            return Content(fileContent, "text/html");
         }
     }
 }
